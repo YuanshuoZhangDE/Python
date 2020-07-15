@@ -1,0 +1,27 @@
+#!/bin/sh 
+#PBS -N Mn-neb
+#PBS -o /share/home/yszhang/PBS/myExample/Fe-Cr-Mn/Mn-neb/1024-2-2-1/neb/PBS.out
+#PBS -e /share/home/yszhang/PBS/myExample/Fe-Cr-Mn/Mn-neb/1024-2-2-1/neb/PBS.err
+#PBS -l nodes=1:ppn=24
+#PBS -l walltime=999:00:00  
+#PBS -r n 
+#PBS -V 
+ulimit -s unlimited
+cd $PBS_O_WORKDIR
+cat $PBS_NODEFILE $PBS_NODEFILE>NODEFILE
+
+#Set environment variables, don't need to modify.
+
+## intel-2018
+source /share/intel/intel-2018/bin/compilervars.sh intel64
+source /share/intel/intel-2018/parallel_studio_xe_2018.4.057/bin/psxevars.sh intel64
+source /share/intel/intel-2018/compilers_and_libraries_2018.5.274/linux/mkl/bin/mklvars.sh intel64
+
+#Set environment variables, don't need to modify.
+PROGRAM=/share/home/yszhang/PBS/myExample/Fe-Cr-Mn/Mn-neb/neb/.../in.file
+EXEC=/share/home/yszhang/lammps/lammps-install/src/lmp_mpi
+
+
+#running program
+mpirun -np 22 $EXEC -partition 11x2 -in $PROGRAM
+#mpirun -np 4 $EXEC < $PROGRAM

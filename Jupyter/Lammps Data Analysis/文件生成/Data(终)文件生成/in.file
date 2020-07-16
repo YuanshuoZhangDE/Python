@@ -1,0 +1,27 @@
+units               metal
+atom_style          atomic
+boundary            p p p
+neighbor            0.5 bin
+
+read_data	    /share/home/yszhang/PBS/myExample/Fe-Cr-Mn/Mn-neb/Mn/.../Mn.data
+
+pair_style          meam/c
+pair_coeff          * * /share/home/yszhang/lammps/lammps-install/potentials/CoNiCrFeMn/library.meam Cr Fe Mn  /share/home/yszhang/lammps/lammps-install/potentials/CoNiCrFeMn/CoNiCrFeMn.meam Cr Fe Mn
+
+variable            E equal pe
+
+run                 0
+
+print               "@ini $E"
+
+dump                1 all custom 1000 move.lammpstrj id type x y z
+dump                2 all custom 100 xyz.lammpstrj id x y z
+
+minimize            1.0e-12 1.0e-12 1000000 1000000
+
+undump              1
+undump              2
+
+print               "@min  $E"
+
+

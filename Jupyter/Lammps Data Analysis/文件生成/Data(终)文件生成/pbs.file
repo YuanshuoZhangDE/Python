@@ -1,0 +1,21 @@
+#!/bin/sh 
+#PBS -N Mn-fin
+#PBS -o /share/home/yszhang/PBS/myExample/Fe-Cr-Mn/Mn-neb/Mn/.../PBS.out
+#PBS -e /share/home/yszhang/PBS/myExample/Fe-Cr-Mn/Mn-neb/Mn/.../PBS.err
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=999:00:00  
+#PBS -r n
+#PBS -p 1023 
+#PBS -V 
+ulimit -s unlimited
+cd $PBS_O_WORKDIR
+cat $PBS_NODEFILE $PBS_NODEFILE>NODEFILE
+
+#Set environment variables, don't need to modify.
+PROGRAM=/share/home/yszhang/PBS/myExample/Fe-Cr-Mn/Mn-neb/Mn/.../in.file
+EXEC=/share/home/yszhang/lammps/lammps-install/src/lmp_mpi
+
+
+#running program
+#mpirun -np 4 $EXEC -partition 4x1 -in $PROGRAM
+mpirun -np 1 $EXEC < $PROGRAM

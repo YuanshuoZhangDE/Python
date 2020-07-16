@@ -35,5 +35,5 @@ timestep                0.01
 
 min_style               quickmin
 
-neb 1.0e-9 1.0e-4 10000000 10000000 1000 final /share/home/yszhang/PBS/myExample/Fe-Cr-Mn/Mn-neb/1024-2-2-1/neb/final.file
+neb 1.0e-8 1.0e-4 10000000 10000000 1000 final /share/home/yszhang/PBS/myExample/Fe-Cr-Mn/Mn-neb/1024-2-2-1/neb/final.file
 

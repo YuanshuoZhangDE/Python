@@ -2,8 +2,9 @@
 #PBS -N Mn-neb
 #PBS -o /share/home/yszhang/PBS/myExample/Fe-Cr-Mn/Mn-neb/1024-2-2-1/neb/PBS.out
 #PBS -e /share/home/yszhang/PBS/myExample/Fe-Cr-Mn/Mn-neb/1024-2-2-1/neb/PBS.err
-#PBS -l nodes=1:ppn=24
-#PBS -l walltime=999:00:00  
+#PBS -l nodes=1:ppn=11
+#PBS -l walltime=999:00:00
+#PBS -p 500  
 #PBS -r n 
 #PBS -V 
 ulimit -s unlimited
@@ -23,5 +24,5 @@ EXEC=/share/home/yszhang/lammps/lammps-install/src/lmp_mpi
 
 
 #running program
-mpirun -np 22 $EXEC -partition 11x2 -in $PROGRAM
+mpirun -np 11 $EXEC -partition 11x1 -in $PROGRAM
 #mpirun -np 4 $EXEC < $PROGRAM
